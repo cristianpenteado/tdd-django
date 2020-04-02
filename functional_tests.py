@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
 import unittest
 
 class NewVisitorTest(unittest.TestCase):
@@ -19,20 +21,38 @@ class NewVisitorTest(unittest.TestCase):
         # de tardeas (to-do)
 
         self.assertIn('To-Do', self.browser.title)
-        self.fail('Finish the test!')
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn('To-Do', header_text)
 
         # Ela é convidada a inserir um item de tarefa imediatamente
-
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        self.assertEqual(
+            inputbox.get_attribute('placeholder'),
+            'Digite um item para a lista'
+        )
+        
         # Ela digita "Comprar penas de pavão" em uma caixa de texto
         # O hobby de Ana é fazer iscas para pescas com fly
+        inputbox.send_keys('Comprar penas de pavão')
+
 
         # Quando ela tecla Enter, a página é atualizada, e agora a página lista
-        # "1: Comprar penas de pavão como um item da listas de tarefas"
+        # "1: Comprar penas de pavão" como um item da listas de tarefas"
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertTrue(
+            any(row.text == '1: Comprar penas de pavão' for row in rows)
+        )
 
         # Ainda continua havendo uma caixa  de texto a convidado-a a acrescentar outro
         # item. Ela insere "Usar penas de pavão parta fazer uma fly"
 
         # A página é atualizada e agora mostra dois itens em sua lista
+
+        self.fail('Finish the test!')
 
         # Ana se pergunta se o site se lembrará de sua lista. Então ela nota
         # que o site gerou um URL único para ela -- há um pequeno texto
