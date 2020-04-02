@@ -9,4 +9,8 @@
 6. Ative o [ambiente virtual](https://docs.python.org/pt-br/3/tutorial/venv.html#creating-virtual-environments).
 7. Atualize o pip: `python -m pip install --upgrade pip`
 8. Instale as dependências: `pip install -r requirements.txt`
-9. Inicie o projeto: `python manage.py runserver`
+
+### Comandos úteis
+- Execussão do servidor Django: `python manage.y  runserver`
+- Execussão dos testes funcionais: `python functional_tests.py`
+- Execussão dos testes de unidade: `python manage.py test`
