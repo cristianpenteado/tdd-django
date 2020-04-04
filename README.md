@@ -14,3 +14,5 @@
 - Execussão do servidor Django: `python manage.y  runserver`
 - Execussão dos testes funcionais: `python functional_tests.py`
 - Execussão dos testes de unidade: `python manage.py test`
+- Execussão das migrations: `python manage.py makemigrations`
+- Criação do arquivo db.sqlite3 `python manage.py migration`
